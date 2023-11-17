@@ -4,33 +4,28 @@
   >
     <div class="flex flex-col">
       <h3 class="text-xs mb-2 uppercase">IP Address</h3>
-      <span class="text-2xl">8.8.8.8</span>
+      <span class="text-2xl">{{ ipInfo.address }}</span>
     </div>
 
     <div class="flex flex-col">
       <h3 class="text-xs mb-2 uppercase">Location</h3>
-      <span class="text-2xl">Michigan</span>
+      <span class="text-2xl">{{ ipInfo.state }}</span>
     </div>
 
     <div class="flex flex-col">
       <h3 class="text-xs mb-2 uppercase">Timezone</h3>
-      <span class="text-2xl">UTC -07:00</span>
+      <span class="text-2xl">{{ ipInfo.timezone }}</span>
     </div>
 
     <div class="flex flex-col">
       <h3 class="text-xs mb-2 uppercase">Isp</h3>
-      <span class="text-2xl">Google</span>
+      <span class="text-2xl">{{ ipInfo.isp }}</span>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      token:
-        "pk.eyJ1Ijoidml0b3JmZXJyb25hdG8iLCJhIjoiY2xwMjFkc3I0MG43NjJqcXZ1Yjd6djA5dyJ9.M0ATxtL-4nskEtag8w6vpA",
-    };
-  },
+  props: ["ipInfo"],
 };
 </script>
