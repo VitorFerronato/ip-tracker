@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col h-screen max-h-screen">
     <div
-      class="flex justify-center relative bg-hero-pattern bg-cover px-4 pt-8 pb-32"
+      class="z-20 flex justify-center relative bg-hero-pattern bg-cover px-4 pt-8 pb-32"
     >
       <!-- Search -->
       <div class="w-full max-w-screen-sm">
@@ -17,14 +17,39 @@
           ></i>
         </div>
       </div>
+
+      <!-- IP info -->
+      <IPInfo />
     </div>
+
+    <!-- map -->
+    <div id="map" class="h-full z-10"></div>
   </div>
 </template>
 
 <script>
+import IPInfo from "@/components/IPInfo.vue";
+import { onMounted } from "vue";
+import leaflet from "leaflet";
 // @ is an alias to /src
 
 export default {
+  components: { IPInfo },
   name: "HomeView",
+  setup() {
+    let myMap;
+
+    onMounted(() => {
+      myMap = leaflet.map("map").setView([51.505, -0.09], 13);
+
+      leaflet
+        .tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        })
+        .addTo(myMap);
+    });
+  },
 };
 </script>
